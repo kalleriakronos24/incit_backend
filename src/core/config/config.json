@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "mam",
+    "password": "123456",
+    "database": "incit_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "mam",
+    "password": null,
+    "database": "incit_test_tests",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "mam",
+    "password": null,
+    "database": "incit_test_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
