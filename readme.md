@@ -1,4 +1,4 @@
-This is INCIT Backend test by Mada Nugraha
+This is INCIT Backend Assesment by Mada Nugraha
 
 The technology i am using in this application as follows : 
 - Express.js
@@ -27,5 +27,5 @@ How to use :
     "email" : string,
     "password" : string,
     "retypePassword" : string
-}
+} with a POST request
 - The response would be the user data u just created alongside with the "email" link (we're using Ethereal Email)
