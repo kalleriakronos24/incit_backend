@@ -8,6 +8,7 @@ const sendEmail = async (name) => {
   let testAccount = await nodemailer.createTestAccount();
 
   // create reusable transporter object using the default SMTP transport
+  // we're only using ethereal mail because gmail seems pretty incosistent at this case when sending the email
   let transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
@@ -31,8 +32,13 @@ const sendEmail = async (name) => {
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
   // Preview only available when sending through an Ethereal account
+  // please check the received email from this url
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+  return {
+    url : nodemailer.getTestMessageUrl(info)
+  }
 }
 
 export {

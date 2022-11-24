@@ -55,47 +55,47 @@ class AuthService {
 			return;
 		}
 
+		// check if password are same
 		if (password !== retypePassword) {
 			this.util.setError(401, 'Password doesnt match. Please try again.');
 			this.util.send(response);
 			return;
 		}
 
+		// check if password length is below 8 chars or not
 		if (password && password.length < 8) {
 			this.util.setError(401, 'Password must contain atleast 8 characters');
 			this.util.send(response);
 			return;
 		}
 
-		// At least one upper case
+		// check if least one upper case
 		if (!/(?=.*?[A-Z])/.test(password)) {
 			this.util.setError(401, 'Password must contain atleast one upper case');
 			this.util.send(response);
 			return;
 		}
 
-		// At least one lower case
+		// check if least one lower case
 		if (!/(?=.*?[a-z])/.test(password)) {
 			this.util.setError(401, 'Password must contain atleast one lower case');
 			this.util.send(response);
 			return;
 		}
 
-		// At least one digit number
+		// check if least one digit number
 		if (!/(?=.*?[0-9])/.test(password)) {
 			this.util.setError(401, 'Password must contain atleast one digit number');
 			this.util.send(response);
 			return;
 		}
 
-		// At least one special character
+		// check if least one special character
 		if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
 			this.util.setError(401, 'Password must contain atleast one special character');
 			this.util.send(response);
 			return;
 		}
-
-		// else
 
 		const hashPassword = await this.hashPassword(password);
 
@@ -104,11 +104,14 @@ class AuthService {
 		// generate token
 		// const token = await this.generateToken({ ...newUser});
 
-		this.util.setSuccess(201, 'User Created!', newUser);
-		this.util.send(response);
-		
 		// send email
-		await sendEmail(firstName)
+		const { url } = await sendEmail(firstName);
+		this.util.setSuccess(201, 'User Created!', {
+			user: newUser,
+			emailLink: url, // we passed the email link through the api response, this one is abit slower response because sending email through ethereal email bit slower
+		});
+		this.util.send(response);
+
 		return;
 	}
 
