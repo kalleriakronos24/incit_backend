@@ -6,7 +6,6 @@ require('dotenv').config();
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import Routes from './server/routes/index';
-import Model from './server/models';
 
 // process.on('unhandledRejection', (rejectionErr) => {
 //     // won't execute
