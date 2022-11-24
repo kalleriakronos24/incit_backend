@@ -154,8 +154,6 @@ class App extends Routes {
             next();
         });
 
-
-
         app.use('/public', express.static('./public'));
 
         // start server
